@@ -6,7 +6,7 @@
 #    By: user42 <user42@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/31 13:58:56 by cproesch          #+#    #+#              #
-#    Updated: 2021/09/21 16:10:05 by user42           ###   ########.fr        #
+#    Updated: 2021/09/23 11:31:39 by user42           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,11 +25,11 @@ NAME		= so_long
 
 CC			= clang
 
-IFLAGS		= -I. -Ilibft -Imlx
+IFLAGS		= -I. -Ilibft -Imlx-linux
 
 CFLAGS		= -Wall -Wextra -Werror $(IFLAGS)
 
-LFLAGS		= -Llibft -Lmlx -lft -lbsd -lXext -lX11 -lmlx 
+LFLAGS		= -Llibft -Lmlx-linux -lft -lbsd -lXext -lX11 -lmlx-linux
 
 RM			= rm -rf
 
@@ -38,12 +38,14 @@ RM			= rm -rf
 
 $(NAME):	$(OBJS)
 			make -C libft
+			make -C mlx-linux
 			$(CC) $(OBJS) $(LFLAGS) -o $(NAME)
 
 all:		$(NAME)
 
 clean:	
 			make -C libft -f Makefile clean
+			make -C mlx-linux -f Makefile clean
 			$(RM) $(OBJS) $(OBJS_B)
 
 fclean:		clean
@@ -54,6 +56,7 @@ re:			fclean all
 
 bonus:		$(OBJS_B)
 			make -C libft
+			make -C mlx-linux
 			$(CC) $(OBJS_B) $(LFLAGS) -o so_long_bonus
 
 .PHONY:		all clean fclean re
