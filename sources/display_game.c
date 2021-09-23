@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display_game_bonus.c                               :+:      :+:    :+:   */
+/*   display_game.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 11:24:21 by cproesch          #+#    #+#             */
-/*   Updated: 2021/09/23 12:11:50 by user42           ###   ########.fr       */
+/*   Updated: 2021/09/23 11:56:02 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ int	images_to_window(t_data *data)
 
 int	key_event(int keypress, t_data *data)
 {
-	char	next_p;
+	char		next_p;
+	static int	nb_mouv;
 
 	if ((keypress == ESC) || (keypress == W) || (keypress == A)
 		|| (keypress == S) || (keypress == D))
@@ -60,8 +61,15 @@ int	key_event(int keypress, t_data *data)
 		next_p = set_next_p (keypress, data);
 		if (next_p != '1')
 		{
+			ft_putstr_fd("Number of mouvements : ", 1);
+			ft_putnbr_fd(++nb_mouv, 1);
+			ft_putstr_fd("\n", 1);
 			if (!is_exit(next_p, data))
-				make_mouv(next_p, keypress, data);
+			{
+				data->map_tab[data->player_y][data->player_x] = '0';
+				mouvement(next_p, keypress, data);
+				data->map_tab[data->player_y][data->player_x] = 'P';
+			}
 		}
 	}
 	return (0);
@@ -75,7 +83,6 @@ int	redcross_exit(t_data *data)
 
 void	display_game(t_data data)
 {
-	data.mouv = 0;
 	mlx_loop_hook(data.mlx_ptr, &images_to_window, &data);
 	mlx_key_hook(data.win_ptr, &key_event, &data);
 	mlx_hook(data.win_ptr, 17, 0, &redcross_exit, &data);

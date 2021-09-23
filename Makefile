@@ -6,14 +6,16 @@
 #    By: user42 <user42@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/31 13:58:56 by cproesch          #+#    #+#              #
-#    Updated: 2021/09/23 11:47:16 by user42           ###   ########.fr        #
+#    Updated: 2021/09/23 15:13:40 by user42           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS		= main.c open_map.c check_map.c utils.c display_game.c \
-			init_game.c key_events_utils.c
+SRCS		= sources/main.c sources/open_map.c sources/check_map.c \
+			sources/utils.c sources/display_game.c \
+			sources/init_game.c sources/key_events_utils.c
 
-SRCS_B		= main.c open_map.c check_map.c utils.c key_events_utils.c \
+SRCS_B		= sources/main.c sources/open_map.c sources/check_map.c \
+			sources/utils.c sources/key_events_utils.c \
 			bonus/display_game_bonus.c bonus/init_game_bonus.c \
 			bonus/utils_bonus.c
 

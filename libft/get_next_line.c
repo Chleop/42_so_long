@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cproesch <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/09 15:40:06 by cproesch          #+#    #+#             */
-/*   Updated: 2021/08/09 15:41:25 by cproesch         ###   ########.fr       */
+/*   Updated: 2021/09/23 15:07:12 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,12 @@ char	*ft_return_line(char *line, char *buf, int nl_index)
 	return (line);
 }
 
-char	*add_buffer_to_line(char *line, char *buf)
+char	*add_buffer_to_line(int ret, char *line, char *buf)
 {
 	char	*free_var;
 
+	if (ret == -1)
+		return (NULL);
 	free_var = line;
 	line = ft_strjoin(line, buf);
 	ft_del(free_var);
@@ -82,8 +84,8 @@ char	*get_next_line(int fd)
 		ret = ft_read(fd, buf, line);
 		if (!ret)
 			break ;
-		line = add_buffer_to_line(line, buf);
-		if ((!line) || (ret == -1))
+		line = add_buffer_to_line(ret, line, buf);
+		if (!line)
 			return (NULL);
 	}
 	if (line[0])

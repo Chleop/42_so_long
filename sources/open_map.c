@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/20 20:17:52 by user42            #+#    #+#             */
-/*   Updated: 2021/09/23 15:16:24 by user42           ###   ########.fr       */
+/*   Updated: 2021/09/23 12:27:28 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ void	find_map_dimensions(char *map_address, t_data *data)
 		error_message("Error\nOpen failed\n", NULL);
 	line = get_next_line(fd);
 	if (!line)
-		error_message("Error\nWrong input (empty file, not a file)\n", data);
+	{
+		del(&line);
+		error_message("Error\nEmpty file\n", data);
+	}
 	i = 0;
 	data->map_width = ft_strlen(line) - 1;
 	while (line)
