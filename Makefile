@@ -6,7 +6,7 @@
 #    By: user42 <user42@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/31 13:58:56 by cproesch          #+#    #+#              #
-#    Updated: 2021/09/23 11:31:39 by user42           ###   ########.fr        #
+#    Updated: 2021/09/23 11:47:16 by user42           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ IFLAGS		= -I. -Ilibft -Imlx-linux
 
 CFLAGS		= -Wall -Wextra -Werror $(IFLAGS)
 
-LFLAGS		= -Llibft -Lmlx-linux -lft -lbsd -lXext -lX11 -lmlx-linux
+LFLAGS		= -Llibft -Lmlx-linux -lft -lbsd -lXext -lX11 -lmlx
 
 RM			= rm -rf
 
